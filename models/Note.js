@@ -10,6 +10,7 @@
  */
 
 const mongoose = require("mongoose");
+const AutoIncrement = require("mongoose-sequence")(mongoose);
 
 const noteSchema = mongoose.Schema(
   {
@@ -35,6 +36,12 @@ const noteSchema = mongoose.Schema(
     timestamps: true,
   }
 );
+
+noteSchema.plugin(AutoIncrement, {
+  inc_field: "ticket",
+  id: "ticketNums",
+  start_seq: 500,
+});
 
 const Note = mongoose.model("Note", noteSchema);
 

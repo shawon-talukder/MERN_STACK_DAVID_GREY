@@ -17,8 +17,9 @@ const cors = require("cors");
 const mongoose = require("mongoose");
 
 //internal dependencies
+const connectDB = require("./config/dbConn");
 const corsOptions = require("./config/corsOptions");
-const { logger } = require("./middleware/logger");
+const { logger, logEvents } = require("./middleware/logger");
 const routes = require("./routes/root");
 const errorHandler = require("./middleware/errorHandler");
 
@@ -27,6 +28,8 @@ const app = express();
 
 //configuration
 const PORT = process.env.PORT || 3500;
+
+connectDB();
 
 //middlewares
 app.use(logger);
@@ -56,7 +59,19 @@ app.all("*", (req, res) => {
 //error handler middleware
 app.use(errorHandler);
 
-//run the server
-app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
+//check if mongoDB connection is successful
+mongoose.connection.once("open", () => {
+  console.log("Database connection successful!");
+  //run the server
+  app.listen(PORT, () => {
+    console.log(`Server running on port ${PORT}`);
+  });
+});
+
+mongoose.connection.on("error", (err) => {
+  console.log(err);
+  logEvents(
+    `${err.no}: ${err.code}\t${err.syscall}\t${err.hostname}`,
+    "mongoErrLog.log"
+  );
 });
