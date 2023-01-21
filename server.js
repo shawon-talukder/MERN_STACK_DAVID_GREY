@@ -22,6 +22,7 @@ const corsOptions = require("./config/corsOptions");
 const { logger, logEvents } = require("./middleware/logger");
 const routes = require("./routes/root");
 const errorHandler = require("./middleware/errorHandler");
+const userRouter = require("./routes/userRouter");
 
 //model scaffolding
 const app = express();
@@ -43,6 +44,7 @@ app.use(
 
 //router path
 app.use("/", routes);
+app.use("/users", userRouter);
 
 //404 not found
 app.all("*", (req, res) => {
