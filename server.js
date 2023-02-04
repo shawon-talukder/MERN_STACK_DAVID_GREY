@@ -23,6 +23,7 @@ const { logger, logEvents } = require("./middleware/logger");
 const routes = require("./routes/root");
 const errorHandler = require("./middleware/errorHandler");
 const userRouter = require("./routes/userRouter");
+const noteRouter = require("./routes/noteRouter");
 
 //model scaffolding
 const app = express();
@@ -45,6 +46,7 @@ app.use(
 //router path
 app.use("/", routes);
 app.use("/users", userRouter);
+app.use("/notes", noteRouter);
 
 //404 not found
 app.all("*", (req, res) => {
