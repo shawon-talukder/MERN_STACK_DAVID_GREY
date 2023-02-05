@@ -1,6 +1,6 @@
 import React from "react";
+import User from "./User";
 import { useGetUsersQuery } from "./UsersApiSlice";
-import User from "./User"
 const UsersList = () => {
   const {
     data: users,
@@ -8,11 +8,14 @@ const UsersList = () => {
     isSuccess,
     isError,
     error,
-  } = useGetUsersQuery();
+  } = useGetUsersQuery(null, {
+    pollingInterval: 60000,
+    refetchOnFocus: true,
+    refetchOnMountOrArgChange: true,
+  });
 
   let content;
-  if (isLoading) content = <p style={{textAli
-  : "center"}}>Loading...</p>;
+  if (isLoading) content = <p style={{ textAli: "center" }}>Loading...</p>;
   if (isError) {
     content = <p className="errormsg">{error?.data?.message}</p>;
   }
