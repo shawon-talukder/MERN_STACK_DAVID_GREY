@@ -16,7 +16,6 @@ export const notesApiSlice = apiSlice.injectEndpoints({
       validateStatus: (response, result) => {
         return response.status === 200 && !result.isError;
       },
-      keepUnusedDataFor: 5,
       transformResponse: (responseData) => {
         const loadednotes = responseData.map((note) => {
           note.id = note._id;
@@ -43,7 +42,7 @@ export const notesApiSlice = apiSlice.injectEndpoints({
           ...initialNoteData,
         },
       }),
-      invalidatesTags: [{ type: "Notes", id: "LIST" }],
+      invalidatesTags: [{ type: "Note", id: "LIST" }],
     }),
     updateNote: builder.mutation({
       query: (initialNoteData) => ({
@@ -53,7 +52,7 @@ export const notesApiSlice = apiSlice.injectEndpoints({
           ...initialNoteData,
         },
       }),
-      invalidatesTags: (result, error, arg) => [{ type: "Notes", id: arg.id }],
+      invalidatesTags: (result, error, arg) => [{ type: "Note", id: arg.id }],
     }),
     deleteNote: builder.mutation({
       query: ({ id }) => ({
@@ -61,7 +60,7 @@ export const notesApiSlice = apiSlice.injectEndpoints({
         method: "DELETE",
         body: { id },
       }),
-      invalidatesTags: (result, error, arg) => [{ type: "Notes", id: arg.id }],
+      invalidatesTags: (result, error, arg) => [{ type: "Note", id: arg.id }],
     }),
   }),
 });
@@ -84,7 +83,6 @@ const selectNotesData = createSelector(
 );
 
 //getselectors create these selectores and we rename them with aliases using destructuring
-
 export const {
   selectAll: selectAllNotes,
   selectById: selectNoteById,

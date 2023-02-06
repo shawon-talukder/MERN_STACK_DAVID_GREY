@@ -5,6 +5,7 @@ import { useGetNotesQuery } from "./notesApiSlice";
 const NoteList = () => {
   const {
     data: notes,
+    isFetching,
     isLoading,
     isSuccess,
     isError,
@@ -14,8 +15,9 @@ const NoteList = () => {
     refetchOnFocus: true,
     refetchOnMountOrArgChange: true,
   });
+
   let content;
-  if (isLoading) content = <p>Loading...</p>;
+  if (isLoading || isFetching) content = <p>Loading...</p>;
   if (isError) {
     content = <p className="errmsg">{error?.data?.message}</p>;
   }

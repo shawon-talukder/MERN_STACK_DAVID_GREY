@@ -41,7 +41,7 @@ export const usersApiSlice = apiSlice.injectEndpoints({
       }),
       invalidatesTags: [
         {
-          type: "USER",
+          type: "User",
           id: "LIST",
         },
       ],
