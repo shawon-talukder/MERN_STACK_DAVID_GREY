@@ -17,9 +17,13 @@ const {
   updateNote,
   deleteNote,
 } = require("../controllers/notesController");
+
+const verifyJWT = require("../middleware/verifyJWT");
 // Model Scaffolding
 const router = express.Router();
 
+//condiguration
+router.use(verifyJWT);
 // Model Structure
 router
   .route("/")

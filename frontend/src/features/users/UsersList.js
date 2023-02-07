@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import User from "./User";
 import { useGetUsersQuery } from "./UsersApiSlice";
 const UsersList = () => {
@@ -13,9 +13,6 @@ const UsersList = () => {
     refetchOnFocus: true,
     refetchOnMountOrArgChange: true,
   });
-  useEffect(()=>{
-    window.location.reload(false);
-  },[users])
 
   let content;
   if (isLoading) content = <p style={{ textAli: "center" }}>Loading...</p>;

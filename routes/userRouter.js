@@ -17,8 +17,12 @@ const {
   updateUser,
   deleteUser,
 } = require("../controllers/usersController");
+const verifyJWT = require("../middleware/verifyJWT");
 // Model Scaffolding
 const router = express.Router();
+
+//configuration
+router.use(verifyJWT);
 
 // Model Structure
 router

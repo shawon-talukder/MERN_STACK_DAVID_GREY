@@ -73,7 +73,6 @@ const updateUser = asyncHandler(async (req, res) => {
     return res.status(400).json({ message: "All fields are required!" });
   }
   const user = await User.findById({ _id: id }).exec();
-  console.log(user);
   //user not found
   if (!user) {
     return res.status(400).json({ message: "User not found!" });
@@ -93,7 +92,6 @@ const updateUser = asyncHandler(async (req, res) => {
   }
   //save it to the database
   const updatedUser = await user.save();
-  console.log(updatedUser);
   res.status(200).json({ message: `${updatedUser.username} is updated!` });
 });
 
