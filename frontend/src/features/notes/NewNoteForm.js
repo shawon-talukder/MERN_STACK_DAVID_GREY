@@ -16,7 +16,7 @@ const NewNoteForm = ({ users }) => {
     //hooks
     const [title, setTitle] = useState('');
     const [text, setText] = useState('');
-    const [userId, setUserId] = useState(users[0].id);
+    const [userId, setUserId] = useState(users[0]?.id);
 
     useEffect(()=>{
         if(isSuccess){
