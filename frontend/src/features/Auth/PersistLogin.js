@@ -52,7 +52,6 @@ const PersistLogin = () => {
     content = <Outlet />;
   } else if (token && isUninitialized) {
     console.log("Token and uninitialize!");
-    console.log(isUninitialized);
     content = <Outlet />;
   }
   return content;

@@ -17,7 +17,6 @@ const baseQuery = fetchBaseQuery({
 });
 
 const baseQueryWithReAuth = async (args, api, extraOptions) => {
-  console.log(`Args: ${args}\textraOptions: ${extraOptions}\tapi: ${api}`);
 
   let result = await baseQuery(args, api, extraOptions);
 
