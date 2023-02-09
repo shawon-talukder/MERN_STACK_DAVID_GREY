@@ -9,7 +9,7 @@ const NewNote = () => {
   const content = users ? (
     <NewNoteForm users={users} />
   ) : (
-    <p>Loading users...</p>
+    <p>Loading...</p>
   );
   return content;
 };

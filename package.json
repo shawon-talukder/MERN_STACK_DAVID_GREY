@@ -9,12 +9,11 @@
   },
   "keywords": [
     "technotes",
-    "Lesson by Dave Gray"
+    "Lessons by Dave Gray"
   ],
   "author": "Shawon Talukder",
   "license": "ISC",
   "dependencies": {
-    "@reduxjs/toolkit": "^1.9.2",
     "bcrypt": "^5.1.0",
     "cookie-parser": "^1.4.6",
     "cors": "^2.8.5",
@@ -26,7 +25,6 @@
     "jsonwebtoken": "^9.0.0",
     "mongoose": "^6.8.3",
     "mongoose-sequence": "^5.3.1",
-    "react-redux": "^8.0.5",
     "uuid": "^9.0.0"
   },
   "devDependencies": {
