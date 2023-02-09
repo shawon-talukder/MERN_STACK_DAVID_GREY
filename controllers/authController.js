@@ -40,13 +40,13 @@ authController.login = asyncHandler(async (req, res) => {
       },
     },
     process.env.ACCESS_TOKEN_SECRET,
-    { expiresIn: "1m" }
+    { expiresIn: "15m" }
   );
 
   const refreshToken = jwt.sign(
     { username: foundUser.username },
     process.env.REFRESH_TOKEN_SECRET,
-    { expiresIn: "1d" }
+    { expiresIn: "7d" }
   );
 
   //create secure cookie with refresh token
@@ -84,7 +84,7 @@ authController.refresh = async (req, res) => {
           },
         },
         process.env.ACCESS_TOKEN_SECRET,
-        { expiresIn: "1d" }
+        { expiresIn: "15m" }
       );
 
       res.json({ accessToken });
@@ -96,6 +96,7 @@ authController.logout = (req, res) => {
   //check if there is any cookie
   const cookies = req.cookies;
   if (!cookies?.jwt) {
+    //no content = 204
     return res.sendStatus(204);
   }
   res.clearCookie("jwt", { httpOnly: true, secure: true, sameSite: "None" });

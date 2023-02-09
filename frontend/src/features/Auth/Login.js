@@ -5,12 +5,16 @@ import { useDispatch } from "react-redux";
 import { useLoginMutation } from "./authApiSlice";
 import { setCredentials } from "./authSlice";
 
+import usePersist from "../../hooks/usePersist";
+
 const Login = () => {
+  //hooks
   const userRef = useRef();
   const errRef = useRef();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [errMsg, setErrMsg] = useState("");
+  const [persist, setPersist] = usePersist();
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -37,6 +41,8 @@ const Login = () => {
   const handlePasswordInput = (e) => {
     setPassword(e.target.value);
   };
+  const handleToggle = (e) => setPersist((prev) => !prev);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -91,6 +97,18 @@ const Login = () => {
             required
           />
           <button className="form__submit-button">Sign In</button>
+
+          {/* persist button  */}
+          <label htmlFor="persist" className="form__persist">
+            <input
+              className="form__checkbox"
+              type="checkbox"
+              id="persist"
+              checked={persist}
+              onChange={handleToggle}
+            />
+              Trust This Device
+          </label>
         </form>
       </main>
       <footer>
