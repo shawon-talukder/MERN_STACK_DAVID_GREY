@@ -1,4 +1,4 @@
 ## https://technotes-kxhx.onrender.com/
 
-username: shawonTalukder
+username: shawonTalukder (admin)
 pass: abcd1234!
