@@ -5,8 +5,8 @@ import NewNoteForm from "./NewNoteForm";
 
 const NewNote = () => {
   const Users = useGetUsersQuery('userList', {
-    selectFromResult: ({data})=>({
-      users: data?.ids?.map( id => data?.entries[id]),
+    selectFromResult: ({ data })=>({
+      users: data?.ids?.map( id => data?.entities[id]),
     })
   })
   const { users }= Users;
