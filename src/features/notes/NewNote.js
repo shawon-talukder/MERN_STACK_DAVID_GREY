@@ -6,11 +6,11 @@ import NewNoteForm from "./NewNoteForm";
 const NewNote = () => {
   const Users = useGetUsersQuery('userList', {
     selectFromResult: ({data})=>({
-      users: data?.ids.map( id => data?.entries[id]),
+      users: data?.ids?.map( id => data?.entries[id]),
     })
   })
-  const {users}= Users;
-  if(!users.length) return <PulseLoader color="#fff"/>;
+  const { users }= Users;
+  if(!users?.length) return <PulseLoader color="#fff"/>;
   
   const content = <NewNoteForm users={users} />
   return content;
