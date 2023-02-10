@@ -9,6 +9,8 @@
  *
  */
 
-const allowedOrigin = ["http://localhost:3000"];
+const allowedOrigin = [
+    "https://technotes-kxhx.onrender.com"
+];
 
 module.exports = allowedOrigin;
