@@ -5,17 +5,12 @@ import { notesApiSlice } from "../notes/notesApiSlice";
 import { usersApiSlice } from "../users/UsersApiSlice";
 
 const Prefetch = () => {
-  useEffect(() => {
-    console.log("Subscribing");
-    const notes = store.dispatch(notesApiSlice.endpoints.getNotes.initiate());
-    const users = store.dispatch(usersApiSlice.endpoints.getUsers.initiate());
 
-    return () => {
-      console.log("Unsubscribe!");
-      notes.unsubscribe();
-      users.unsubscribe();
-    };
+  useEffect(() => {
+    store.dispatch(notesApiSlice.util.prefetch('getNotes', 'noteList', {force: true}));
+    store.dispatch(usersApiSlice.util.prefetch('getUsers', 'userList', {force: true}));
   }, []);
+  
   return <Outlet />;
 };
 

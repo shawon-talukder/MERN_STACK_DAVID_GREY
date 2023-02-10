@@ -1,14 +1,17 @@
 import React from "react";
-import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
+import { PulseLoader } from "react-spinners";
 import EditUserForm from "./EditUserForm";
-import { selectUserById } from "./UsersApiSlice";
-
+import { useGetUsersQuery } from "./UsersApiSlice";
 const EditUser = () => {
   const { id } = useParams();
-  const user = useSelector((state) => selectUserById(state, id));
+  const user = useGetUsersQuery("userList", {
+    selectFromResult: ({data})=>({
+      user: data?.entities[id]
+    })
+  })
 
-  const content = user ? <EditUserForm user={user} /> : <p>Loading...</p>;
+  const content = user ? <EditUserForm user={user} /> : <PulseLoader color="#fff"/>;
   return content;
 };
 
